@@ -16,7 +16,7 @@ public class Line extends Shape {
 
     public void draw(Graphics line)
     {
-        line.drawLine(getStartX(), getStartY(), endX, endY);
         line.setColor(getColor());
+        line.drawLine(getStartX(), getStartY(), endX, endY);
     }
 }

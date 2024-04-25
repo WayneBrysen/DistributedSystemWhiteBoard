@@ -14,7 +14,7 @@ public class Oval extends Shape{
 
     public void draw (Graphics Oval)
     {
-        Oval.drawOval(getStartX(), getStartY(), width, height);
         Oval.setColor(getColor());
+        Oval.drawOval(getStartX(), getStartY(), width, height);
     }
 }

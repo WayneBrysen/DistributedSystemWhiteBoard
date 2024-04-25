@@ -4,61 +4,100 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb61bb02-a50d-4664-9fa5-9add1340e91f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Shapes/Circle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Shapes/Line.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Shapes/Oval.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Shapes/Shape.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WhiteBoard/DrawPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="70f1f55b-a8e0-45d3-ae12-e40a4cf52c7e" name="Changes" comment="Add shapes &amp; drawPanel as the initial step">
+      <change afterPath="$PROJECT_DIR$/src/Shapes/Circle.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Shapes/Line.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Shapes/Oval.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Shapes/Rectangle.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Shapes/Rectangle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Shapes/Shape.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WhiteBoard/DrawPanel$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WhiteBoard/DrawPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WhiteBoard/Shape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shapes/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Circle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shapes/Line.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Line.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shapes/Oval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Oval.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WhiteBoard/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoard/DrawPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
+  &quot;associatedIndex&quot;: 6
 }</component>
-  <component name="ProjectId" id="2fRV3lQBq1N7DhVh5vrPV5oK3l8" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2fY4sVsvAfNi2nBa5T0cc3pPhiW" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.DrawPanel.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/UniversityUnits/Master/Subjects/COMP90015/DSasm2 SourceCode",
-    "onboarding.tips.debug.path": "F:/MasterSubjects/comp90015/Assignment2SourceCode/src/Main.java"
+    "kotlin-language-version-configured": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Shapes" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="DrawPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="WhiteBoard.DrawPanel" />
+      <module name="Assignment2SourceCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="WhiteBoard.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.DrawPanel" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fb61bb02-a50d-4664-9fa5-9add1340e91f" name="Changes" comment="" />
-      <created>1713763682014</created>
+      <changelist id="70f1f55b-a8e0-45d3-ae12-e40a4cf52c7e" name="Changes" comment="Add shapes &amp; drawPanel as the initial step" />
+      <created>1713964885457</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1713763682014</updated>
+      <updated>1713964885457</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Add shapes &amp; drawPanel as the initial step" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add shapes &amp; drawPanel as the initial step" />
   </component>
 </project>
