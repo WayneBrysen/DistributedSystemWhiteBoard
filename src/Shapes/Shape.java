@@ -11,14 +11,25 @@ public abstract class Shape implements Serializable {
 
     private Color color;
 
-    public Shape(int startX, int startY, Color color)
+    private int strokeSize;
+
+    public Shape(int startX, int startY, Color color, int strokeSize)
     {
         this.startX = startX;
         this.startY = startY;
         this.color = color;
+        this.strokeSize = strokeSize;
     }
 
-    public abstract void draw(Graphics shape);
+    public abstract void draw(Graphics2D shape);
+
+    public int getStrokeSize() {
+        return strokeSize;
+    }
+
+    public void setStrokeSize(int strokeSize) {
+        this.strokeSize = strokeSize;
+    }
 
     public int getStartX() {
         return startX;

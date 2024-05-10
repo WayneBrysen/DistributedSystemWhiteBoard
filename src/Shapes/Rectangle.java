@@ -5,16 +5,17 @@ import java.awt.*;
 public class Rectangle extends Shape{
     private int width, height;
 
-    public Rectangle(int startX, int startY, int width, int height, Color color)
+    public Rectangle(int startX, int startY, int width, int height, Color color, int strokeSize)
     {
-        super(startX, startY,color);
+        super(startX, startY,color, strokeSize);
         this.width = width;
         this.height = height;
     }
 
-    public void draw (Graphics Rectangle)
+    public void draw(Graphics2D rectangle)
     {
-        Rectangle.setColor(getColor());
-        Rectangle.drawRect(getStartX(), getStartY(), width, height);
+        rectangle.setStroke(new BasicStroke(getStrokeSize()));
+        rectangle.setColor(getColor());
+        rectangle.drawRect(getStartX(), getStartY(), width, height);
     }
 }
