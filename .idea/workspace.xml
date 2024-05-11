@@ -4,26 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70f1f55b-a8e0-45d3-ae12-e40a4cf52c7e" name="Changes" comment="basic functions in DrawPanel">
-      <change afterPath="$PROJECT_DIR$/src/WhiteBoardClient/DrawPanel$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WhiteBoardClient/DrawPanel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WhiteBoardInterface/WhiteBoardRemote.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServerApp.java" afterDir="false" />
+    <list default="true" id="70f1f55b-a8e0-45d3-ae12-e40a4cf52c7e" name="Changes" comment="implementing RMI">
+      <change afterPath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClientApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WhiteBoardInterface/ClientUpdateRemote.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shapes/Circle.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Circle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shapes/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Circle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shapes/Line.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Line.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shapes/Line.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Line.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shapes/Oval.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Oval.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shapes/Oval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Oval.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shapes/Rectangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Rectangle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shapes/Rectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Rectangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shapes/Shape.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Shape.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shapes/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Shape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WhiteBoard/DrawPanel$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WhiteBoard/DrawPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WhiteBoard/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardClient/DrawPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServerApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -54,15 +40,15 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.DrawPanel.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/UniversityUnits/Master/Subjects/COMP90015/TutorialDemo/RMIDemo/RMIDemo"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.DrawPanel.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/UniversityUnits/Master/Subjects/COMP90015/TutorialDemo/RMIDemo/RMIDemo&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Shapes" />
@@ -74,7 +60,7 @@
       <module name="Assignment2SourceCode" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="WhiteBoardClient.*" />
+          <option name="PATTERN" value="WhiteBoardInterface.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -105,7 +91,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714049438952</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="implementing RMI">
+      <option name="closed" value="true" />
+      <created>1715339550631</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715339550631</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -123,6 +117,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Add shapes &amp; drawPanel as the initial step" />
     <MESSAGE value="basic functions in DrawPanel" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic functions in DrawPanel" />
+    <MESSAGE value="implementing RMI" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementing RMI" />
   </component>
 </project>
