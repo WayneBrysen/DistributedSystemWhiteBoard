@@ -4,11 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70f1f55b-a8e0-45d3-ae12-e40a4cf52c7e" name="Changes" comment="implementing RMI">
-      <change afterPath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClientApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WhiteBoardInterface/ClientUpdateRemote.java" afterDir="false" />
+    <list default="true" id="70f1f55b-a8e0-45d3-ae12-e40a4cf52c7e" name="Changes" comment="build apps for client">
+      <change afterPath="$PROJECT_DIR$/src/GUIComponents/DrawPanel$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUIComponents/DrawPanel.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClient.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClientApp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WhiteBoardInterface/ClientUpdateRemote.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WhiteBoardInterface/WhiteBoardRemote.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServerApp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shapes/Circle.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Circle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shapes/Circle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Circle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shapes/Line.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Line.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shapes/Line.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Line.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shapes/Oval.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Oval.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shapes/Oval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Oval.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shapes/Rectangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Rectangle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shapes/Rectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Rectangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WhiteBoardClient/DrawPanel$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WhiteBoardClient/DrawPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardClient/DrawPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WhiteBoardClient/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIComponents/DrawPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WhiteBoardInterface/ClientUpdateRemote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardInterface/ClientUpdateRemote.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WhiteBoardInterface/WhiteBoardRemote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardInterface/WhiteBoardRemote.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServerApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,21 +62,26 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.DrawPanel.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/UniversityUnits/Master/Subjects/COMP90015/TutorialDemo/RMIDemo/RMIDemo&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.DrawPanel.executor": "Run",
+    "Application.WhiteBoardClient.executor": "Run",
+    "Application.WhiteBoardServer.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/UniversityUnits/Master/Subjects/COMP90015/TutorialDemo/RMIDemo/RMIDemo"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\UniversityUnits\Master\Subjects\COMP90015\DistributedSystemWhiteBoard\src\GUIComponents" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Shapes" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.WhiteBoardClient">
     <configuration name="DrawPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="WhiteBoardClient.DrawPanel" />
       <module name="Assignment2SourceCode" />
@@ -68,8 +95,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WhiteBoardClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="WhiteBoardClient.WhiteBoardClient" />
+      <module name="Assignment2SourceCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="WhiteBoardClient.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WhiteBoardServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="WhiteBoardServer.WhiteBoardServer" />
+      <module name="Assignment2SourceCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="WhiteBoardServer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.WhiteBoardClient" />
+        <item itemvalue="Application.WhiteBoardServer" />
         <item itemvalue="Application.DrawPanel" />
       </list>
     </recent_temporary>
@@ -99,7 +154,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715339550631</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="build apps for client">
+      <option name="closed" value="true" />
+      <created>1715390181739</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715390181739</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,6 +181,7 @@
     <MESSAGE value="Add shapes &amp; drawPanel as the initial step" />
     <MESSAGE value="basic functions in DrawPanel" />
     <MESSAGE value="implementing RMI" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementing RMI" />
+    <MESSAGE value="build apps for client" />
+    <option name="LAST_COMMIT_MESSAGE" value="build apps for client" />
   </component>
 </project>

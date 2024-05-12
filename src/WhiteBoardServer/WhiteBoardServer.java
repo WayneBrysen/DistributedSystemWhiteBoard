@@ -8,7 +8,7 @@ public class WhiteBoardServer {
         try {
             WhiteBoardServerApp serverApp = new WhiteBoardServerApp();
 
-            Registry registry = LocateRegistry.getRegistry();
+            Registry registry = LocateRegistry.createRegistry(1099);
 
             registry.rebind("WhiteBoardServer", serverApp);
 

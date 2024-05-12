@@ -1,8 +1,9 @@
 package Shapes;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Line extends Shape {
+public class Line extends Shape implements Serializable {
     int endX, endY;
 
 

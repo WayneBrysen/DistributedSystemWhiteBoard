@@ -7,5 +7,6 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public interface ClientUpdateRemote extends Remote {
-    void clientGetUpdate (List<Shape> shapes) throws RemoteException;
+    void clientGetCanvasUpdate(List<Shape> shapes) throws RemoteException;
+    void clientGetChatUpdate(String message) throws RemoteException;
 }

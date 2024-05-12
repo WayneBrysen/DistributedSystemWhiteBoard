@@ -1,8 +1,9 @@
 package Shapes;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Oval extends Shape{
+public class Oval extends Shape implements Serializable {
     private int width, height;
 
     public Oval (int startX, int startY, int width, int height, Color color, int strokeSize)

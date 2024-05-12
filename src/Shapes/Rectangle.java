@@ -1,8 +1,9 @@
 package Shapes;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Rectangle extends Shape{
+public class Rectangle extends Shape implements Serializable {
     private int width, height;
 
     public Rectangle(int startX, int startY, int width, int height, Color color, int strokeSize)

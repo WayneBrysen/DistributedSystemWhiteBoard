@@ -1,8 +1,9 @@
 package Shapes;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Circle extends Shape{
+public class Circle extends Shape implements Serializable {
     private int width, height;
 
     public Circle (int startX, int startY, int radius, Color color, int strokeSize)

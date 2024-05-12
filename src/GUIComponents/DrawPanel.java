@@ -1,4 +1,4 @@
-package WhiteBoardClient;
+package GUIComponents;
 
 import Shapes.Circle;
 import Shapes.Line;
@@ -310,15 +310,15 @@ public class DrawPanel extends JPanel {
         }
     }
 
-    public static void main(String[] args) {
-        DrawPanel panel = new DrawPanel();
-        JFrame frame = new JFrame("Draw Panel");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(panel);
-        frame.setSize(800, 600);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
+//    public static void main(String[] args) {
+//        DrawPanel panel = new DrawPanel();
+//        JFrame frame = new JFrame("Draw Panel");
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.add(panel);
+//        frame.setSize(800, 600);
+//        frame.setLocationRelativeTo(null);
+//        frame.setVisible(true);
+//    }
 
     public synchronized List<Shape> getShapes() {
         return new ArrayList<>(shapes);
