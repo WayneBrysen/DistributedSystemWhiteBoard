@@ -1,11 +1,13 @@
 package WhiteBoardClient;
 
+import GUIComponents.ChatWindow;
 import GUIComponents.DrawPanel;
 import Shapes.Shape;
 import WhiteBoardInterface.ClientUpdateRemote;
 import WhiteBoardInterface.WhiteBoardRemote;
 
 import javax.swing.*;
+import java.awt.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.List;
 public class WhiteBoardClient {
     private DrawPanel drawPanel;
     private WhiteBoardRemote serverAPP;
+    private ChatWindow chatWindow;
 
     public WhiteBoardClient() {
         buildConnection();
@@ -25,11 +28,18 @@ public class WhiteBoardClient {
             Registry registry = LocateRegistry.getRegistry("localhost", 1099);
             serverAPP = (WhiteBoardRemote) registry.lookup("WhiteBoardServer");
             drawPanel = new DrawPanel(serverAPP);
-            ClientUpdateRemote clientApp = new WhiteBoardClientApp(drawPanel);
+            chatWindow = new ChatWindow(serverAPP);
+
+            ClientUpdateRemote clientApp = new WhiteBoardClientApp(drawPanel,chatWindow);
+
             serverAPP.addNewClient(clientApp);
 
             List<Shape> canvasShapes = serverAPP.getShapes();
+
+            List<String> chatHistory = serverAPP.getMessages();
+
             drawPanel.setShapes(canvasShapes);
+            chatWindow.updateChat(chatHistory);
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Client initiate error: " + e.getMessage());
@@ -38,7 +48,8 @@ public class WhiteBoardClient {
 
     private void UISetup() {
         JFrame frame = new JFrame("WhiteBoard Client");
-        frame.add(drawPanel);
+        frame.add(drawPanel, BorderLayout.CENTER);
+        frame.add(chatWindow, BorderLayout.SOUTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
         frame.setVisible(true);

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ClientUpdateRemote extends Remote {
     void clientGetCanvasUpdate(List<Shape> shapes) throws RemoteException;
-    void clientGetChatUpdate(String message) throws RemoteException;
+    void clientGetChatUpdate(List<String> message) throws RemoteException;
 }

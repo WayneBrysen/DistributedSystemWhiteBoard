@@ -27,9 +27,20 @@ public class WhiteBoardServerApp extends UnicastRemoteObject implements WhiteBoa
         return new ArrayList<>(shapes);
     }
 
+    public void updateCanvasForAllClients() throws RemoteException {
+        for (ClientUpdateRemote client : clients) {
+            client.clientGetCanvasUpdate(new ArrayList<>(shapes));
+            client.clientGetChatUpdate(new ArrayList<>(messages));
+        }
+    }
+
     public void addMessage(String message) throws RemoteException {
         messages.add(message);
-        updateCanvasForAllClients();
+        updateChatForAllClients();
+    }
+
+    public List<String> getMessages() throws RemoteException {
+        return new ArrayList<>(messages);
     }
 
     public void updateChatForAllClients() throws RemoteException {
@@ -38,15 +49,9 @@ public class WhiteBoardServerApp extends UnicastRemoteObject implements WhiteBoa
         }
     }
 
-
-    public void updateCanvasForAllClients() throws RemoteException {
-        for (ClientUpdateRemote client : clients) {
-            client.clientGetCanvasUpdate(new ArrayList<>(shapes));
-        }
-    }
-
     public void addNewClient(ClientUpdateRemote client) throws RemoteException {
         clients.add(client);
         client.clientGetCanvasUpdate(new ArrayList<>(shapes));
+        client.clientGetChatUpdate(new ArrayList<>(messages));
     }
 }
