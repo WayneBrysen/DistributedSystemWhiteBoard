@@ -1,10 +1,12 @@
 package WhiteBoardInterface;
 
 import Shapes.Shape;
+import WhiteBoardClient.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public interface WhiteBoardRemote extends Remote {
 
@@ -14,9 +16,15 @@ public interface WhiteBoardRemote extends Remote {
     void addMessage(String message) throws RemoteException;
     List<String> getMessages() throws RemoteException;
 
-    public void updateCanvasForAllClients() throws RemoteException;
+    void updateCanvasForAllClients() throws RemoteException;
 
-    public void updateChatForAllClients() throws RemoteException;
+    void updateChatForAllClients() throws RemoteException;
 
-    public void addNewClient(ClientUpdateRemote client) throws RemoteException;
+    boolean addUser(String username) throws RemoteException;
+    void kickUser(String username) throws RemoteException;
+    ConcurrentHashMap<String, User> getUserList() throws RemoteException;
+
+    void addNewClient(ClientUpdateRemote client) throws RemoteException;
+    void removeClient(ClientUpdateRemote client) throws RemoteException;
+
 }

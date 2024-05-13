@@ -8,6 +8,7 @@ import Shapes.Shape;
 import WhiteBoardInterface.WhiteBoardRemote;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -42,8 +43,20 @@ public class DrawPanel extends JPanel {
         EastPanel.setLayout(new BoxLayout(EastPanel, BoxLayout.Y_AXIS));
 
         buttonPanel(WestPanel);
-        createColorPanel(EastPanel);
-        strokeSizePanel(EastPanel);
+        JPanel colorPanel = createColorPanel();
+        JPanel customColorPanel = customColorPicker();
+        JPanel strokeSizePanel = strokeSizePanel();
+
+        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, colorPanel, customColorPanel);
+        splitPane.setDividerLocation(220);
+
+        JSplitPane mainSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, splitPane, strokeSizePanel);
+
+        mainSplitPane.setDividerLocation(300);
+        mainSplitPane.setResizeWeight(0.5);
+
+        EastPanel.add(mainSplitPane);
+
 
         add(WestPanel, BorderLayout.WEST);
         add(EastPanel, BorderLayout.EAST);
@@ -219,9 +232,10 @@ public class DrawPanel extends JPanel {
         this.backgroundColor = backgroundColor;
     }
 
-    private void createColorPanel(JPanel eastPanel)
+    private JPanel createColorPanel()
     {
         JPanel colorPanel = new JPanel(new GridLayout(8, 2));
+        colorPanel.setBorder(BorderFactory.createTitledBorder("Color Selection"));
         Color[] colorsForSelection = new Color[]
                 {
                         Color.black, Color.blue,
@@ -242,23 +256,52 @@ public class DrawPanel extends JPanel {
             });
             colorPanel.add(colorButton);
         }
-        eastPanel.add(colorPanel, BorderLayout.NORTH);
+        return colorPanel;
     }
 
-    private void strokeSizePanel(JPanel eastPanel)
-    {
-        SpinnerNumberModel strokeSpinner = new SpinnerNumberModel(1, 1,30, 1);
-        JSpinner strokeSizeSpinner = new JSpinner(strokeSpinner);
-        strokeSizeSpinner.addChangeListener(e -> {
-            strokeSizeSelection = (int)strokeSizeSpinner.getValue();
+    private JPanel customColorPicker() {
+        JButton customColorButton = new JButton("Custom Color");
+        customColorButton.addActionListener(e -> {
+            JColorChooser colorChooser = new JColorChooser();
+            colorChooser.setPreviewPanel(new JPanel());
+            Color selectedColor = colorChooser.showDialog(null, "Choose a color", colorSelection);
+            if (selectedColor != null) {
+                colorSelection = selectedColor;
+            }
         });
-        eastPanel.add(strokeSizeSpinner, BorderLayout.SOUTH);
+        JPanel customColorPanel = new JPanel(new BorderLayout());
+        customColorPanel.add(customColorButton);
+        customColorPanel.setBorder(new TitledBorder("Custom Color"));
+        return customColorPanel;
+
+    }
+
+    private JPanel strokeSizePanel()
+    {
+        JSlider strokeSlider = new JSlider(JSlider.VERTICAL, 1,30, 1);
+        strokeSlider.setMajorTickSpacing(5);
+        strokeSlider.setMinorTickSpacing(1);
+
+        strokeSlider.setPaintTicks(true);
+        strokeSlider.setPaintLabels(true);
+
+        strokeSlider.addChangeListener(e -> {
+            strokeSizeSelection = strokeSlider.getValue();
+        });
+        JPanel sliderPanel = new JPanel(new BorderLayout());
+        sliderPanel.add(strokeSlider);
+        sliderPanel.setBorder(new TitledBorder("Stroke Size"));
+
+        strokeSlider.setPreferredSize(new Dimension(80, 200));
+
+        return sliderPanel;
     }
 
     private void buttonPanel(JPanel westPanel)
     {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        buttonPanel.setBorder(BorderFactory.createTitledBorder("Draw Tools"));
 
         //add line button
         JButton lineButton = new JButton("Line");
@@ -309,16 +352,6 @@ public class DrawPanel extends JPanel {
             e.printStackTrace();
         }
     }
-
-//    public static void main(String[] args) {
-//        DrawPanel panel = new DrawPanel();
-//        JFrame frame = new JFrame("Draw Panel");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.add(panel);
-//        frame.setSize(800, 600);
-//        frame.setLocationRelativeTo(null);
-//        frame.setVisible(true);
-//    }
 
     public synchronized List<Shape> getShapes() {
         return new ArrayList<>(shapes);
