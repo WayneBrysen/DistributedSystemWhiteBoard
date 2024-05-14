@@ -4,35 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70f1f55b-a8e0-45d3-ae12-e40a4cf52c7e" name="Changes" comment="make whiteboard distribution work">
-      <change afterPath="$PROJECT_DIR$/src/GUIComponents/ChatWindow.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUIComponents/PeerAndChatPanel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WhiteBoardClient/User.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WhiteBoardClient/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClient$1.class" afterDir="false" />
+    <list default="true" id="70f1f55b-a8e0-45d3-ae12-e40a4cf52c7e" name="Changes" comment="implementing RMI">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUIComponents/ChatWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIComponents/PeerAndChatPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUIComponents/ChatWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIComponents/ChatWindow.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUIComponents/DrawPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIComponents/DrawPanel$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUIComponents/DrawPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIComponents/DrawPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUIComponents/DrawPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIComponents/DrawPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUIComponents/PeerAndChatPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIComponents/PeerAndChatPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Shapes/Circle.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Circle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Shapes/Line.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Line.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Shapes/Oval.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Oval.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Shapes/Rectangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Rectangle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Shapes/Shape.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shapes/Shape.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WhiteBoardClient/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardClient/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClient$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClient$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClient.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClientApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClientApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardClient/WhiteBoardClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WhiteBoardInterface/ClientUpdateRemote.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardInterface/ClientUpdateRemote.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WhiteBoardInterface/ClientUpdateRemote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardInterface/ClientUpdateRemote.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WhiteBoardInterface/WhiteBoardRemote.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardInterface/WhiteBoardRemote.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WhiteBoardInterface/WhiteBoardRemote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardInterface/WhiteBoardRemote.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServerApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServerApp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WhiteBoardServer/WhiteBoardServerApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +43,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;WayneBrysen&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/WayneBrysen/DistributedSystemWhiteBoard.git&quot;,
+    &quot;accountId&quot;: &quot;50be291f-c295-4a58-b842-b1decd176052&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -69,20 +74,24 @@
     &quot;Application.DrawPanel.executor&quot;: &quot;Run&quot;,
     &quot;Application.WhiteBoardClient.executor&quot;: &quot;Run&quot;,
     &quot;Application.WhiteBoardServer.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/UniversityUnits/Master/Subjects/COMP90015/TutorialDemo/RMIDemo/RMIDemo&quot;
+    &quot;last_opened_file_path&quot;: &quot;D:/UniversityUnits/Master/Subjects/COMP90015/TutorialDemo/RMIDemo/RMIDemo&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.24827586&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
   }
 }</component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\UniversityUnits\Master\Subjects\COMP90015\DistributedSystemWhiteBoard\src\GUIComponents" />
-    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Shapes" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.WhiteBoardClient">
+  <component name="RunManager" selected="Application.WhiteBoardServer">
     <configuration name="DrawPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="WhiteBoardClient.DrawPanel" />
       <module name="Assignment2SourceCode" />
@@ -112,6 +121,7 @@
     <configuration name="WhiteBoardServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="WhiteBoardServer.WhiteBoardServer" />
       <module name="Assignment2SourceCode" />
+      <option name="PROGRAM_PARAMETERS" value="localhost 1099 awaj" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="WhiteBoardServer.*" />
@@ -124,8 +134,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.WhiteBoardClient" />
         <item itemvalue="Application.WhiteBoardServer" />
+        <item itemvalue="Application.WhiteBoardClient" />
         <item itemvalue="Application.DrawPanel" />
       </list>
     </recent_temporary>
@@ -155,15 +165,7 @@
       <option name="project" value="LOCAL" />
       <updated>1715339550631</updated>
     </task>
-    <task id="LOCAL-00003" summary="build apps for client">
-      <option name="closed" value="true" />
-      <created>1715390181739</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1715390181739</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -182,7 +184,6 @@
     <MESSAGE value="Add shapes &amp; drawPanel as the initial step" />
     <MESSAGE value="basic functions in DrawPanel" />
     <MESSAGE value="implementing RMI" />
-    <MESSAGE value="build apps for client" />
-    <option name="LAST_COMMIT_MESSAGE" value="build apps for client" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementing RMI" />
   </component>
 </project>

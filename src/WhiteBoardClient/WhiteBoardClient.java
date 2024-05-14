@@ -21,26 +21,27 @@ public class WhiteBoardClient {
     private PeerAndChatPanel peerAndChatPanel;
     private ClientUpdateRemote clientApp;
 
-    public WhiteBoardClient(String serverIPAddress, int serverPort, String username) {
-        buildConnection(serverIPAddress, serverPort, username);
-        UISetup(username);
 
+    public WhiteBoardClient(String serverIPAddress, int serverPort, String username) {
+        if (!buildConnection(serverIPAddress, serverPort, username)) {
+            usernameRepeatDialog(serverIPAddress, serverPort, username);
+        } else {
+            UISetup(username);
+        }
     }
 
-    private void buildConnection(String serverIPAddress, int serverPort, String username) {
+    private boolean buildConnection(String serverIPAddress, int serverPort, String username) {
         try {
             Registry registry = LocateRegistry.getRegistry(serverIPAddress, serverPort);
             serverAPP = (WhiteBoardRemote) registry.lookup("WhiteBoardServer");
 
-            if (serverAPP.addUser(username)) {
-                System.out.println("using username: " + username + " to connect to server");
-            } else {
+            if (!serverAPP.addUser(username)) {
                 System.out.println("username: " + username + " already exists on server");
+                return false;
             }
 
             drawPanel = new DrawPanel(serverAPP);
             peerAndChatPanel = new PeerAndChatPanel(serverAPP);
-
             clientApp = new WhiteBoardClientApp(drawPanel, peerAndChatPanel);
 
             serverAPP.addNewClient(clientApp);
@@ -54,10 +55,48 @@ public class WhiteBoardClient {
             drawPanel.setShapes(canvasShapes);
             peerAndChatPanel.setMessages(chatHistory);
             peerAndChatPanel.setUserList(userList);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Client initiate error: " + e.getMessage());
+            return false;
         }
+    }
+
+    private void usernameRepeatDialog(String serverIPAddress, int serverPort,String username) {
+        JFrame frame = new JFrame("Enter a new username");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(310, 120);
+        frame.setLayout(new BorderLayout());
+
+        JPanel panel = new JPanel();
+        JTextField textField = new JTextField(20);
+        JLabel prompt = new JLabel("Username already exists, Enter a new username:");
+        prompt.setForeground(Color.BLACK);
+
+        JButton submitButton = new JButton("Submit");
+        submitButton.addActionListener(e -> {
+            try {
+                if (buildConnection(serverIPAddress, serverPort, textField.getText())) {
+                    frame.dispose();
+                    UISetup(textField.getText());
+                } else {
+                    prompt.setText("Username already exists, Enter a new username: ");
+                    prompt.setForeground(Color.RED);
+                    textField.requestFocusInWindow();
+                }
+            } catch (Exception error) {
+                error.printStackTrace();
+            }
+        });
+
+        panel.add(prompt);
+        panel.add(textField);
+        panel.add(submitButton);
+        frame.getContentPane().removeAll();
+        frame.add(panel, BorderLayout.CENTER);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 
     private void UISetup(String username) {

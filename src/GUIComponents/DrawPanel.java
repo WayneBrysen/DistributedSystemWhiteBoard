@@ -11,11 +11,14 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DrawPanel extends JPanel {
     private List<Shape> shapes = new ArrayList<>();
+
+    private List<String> pendingUserList;
 
     private JPanel WestPanel = new JPanel(new BorderLayout());
 
@@ -273,11 +276,9 @@ public class DrawPanel extends JPanel {
         customColorPanel.add(customColorButton);
         customColorPanel.setBorder(new TitledBorder("Custom Color"));
         return customColorPanel;
-
     }
 
-    private JPanel strokeSizePanel()
-    {
+    private JPanel strokeSizePanel() {
         JSlider strokeSlider = new JSlider(JSlider.VERTICAL, 1,30, 1);
         strokeSlider.setMajorTickSpacing(5);
         strokeSlider.setMinorTickSpacing(1);
@@ -297,8 +298,7 @@ public class DrawPanel extends JPanel {
         return sliderPanel;
     }
 
-    private void buttonPanel(JPanel westPanel)
-    {
+    private void buttonPanel(JPanel westPanel) {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
         buttonPanel.setBorder(BorderFactory.createTitledBorder("Draw Tools"));
@@ -345,10 +345,22 @@ public class DrawPanel extends JPanel {
         westPanel.add(buttonPanel);
     }
 
+    private void notificationPanel(JPanel westPanel, boolean isManager) {
+        JPanel notificationPanel = new JPanel();
+        notificationPanel.setLayout(new BoxLayout(notificationPanel, BoxLayout.Y_AXIS));
+        notificationPanel.setBorder(BorderFactory.createTitledBorder("Notification"));
+
+        if (isManager) {
+
+        } else {
+
+        }
+    }
+
     private void addShapeToServer (Shape shape) {
         try {
             serverApp.addShape(shape);
-        } catch (Exception e) {
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
