@@ -15,4 +15,6 @@ public interface ClientUpdateRemote extends Remote {
     void clientGetUserListUpdate(ConcurrentHashMap<String, User> userList) throws RemoteException;
     void clientApprovalUpdate(ConcurrentHashMap<String, User> tempUserList) throws RemoteException;
     void serverShutDownUpdate(String message) throws RemoteException;
+    void clientKickedUpdate(String message) throws RemoteException;
+    String getClientUsername() throws RemoteException;
 }

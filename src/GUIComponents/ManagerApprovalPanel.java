@@ -18,13 +18,9 @@ public class ManagerApprovalPanel extends JPanel{
 
         add(tempUserList, BorderLayout.NORTH);
 
-
-
         buttonPanel(buttonPanel, serverAPP);
 
-
         add(buttonPanel, BorderLayout.CENTER);
-
     }
 
     private void buttonPanel(JPanel buttonPanel, WhiteBoardRemote serverAPP) {

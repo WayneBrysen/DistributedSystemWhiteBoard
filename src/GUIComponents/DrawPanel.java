@@ -18,8 +18,6 @@ import java.util.List;
 public class DrawPanel extends JPanel {
     private List<Shape> shapes = new ArrayList<>();
 
-    private List<String> pendingUserList;
-
     private JPanel WestPanel = new JPanel(new BorderLayout());
 
     private JPanel EastPanel = new JPanel();

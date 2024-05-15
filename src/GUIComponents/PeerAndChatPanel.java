@@ -15,20 +15,26 @@ public class PeerAndChatPanel extends JPanel{
 
     private JList<String> userList;
     private DefaultListModel<String> userListModel = new DefaultListModel<>();
+    private JPanel buttonPanel = new JPanel();
 
     private JTextArea displayArea = new JTextArea();
     private JTextField inputFiled = new JTextField();
     private WhiteBoardRemote serverAPP;
     private List<String> messages = new ArrayList<>();
 
-    public PeerAndChatPanel(WhiteBoardRemote serverApp, DrawPanel drawPanel) {
+    public PeerAndChatPanel(boolean isManager,WhiteBoardRemote serverApp, DrawPanel drawPanel, String username) {
         this.serverAPP = serverApp;
         setLayout(new BorderLayout());
         userListAdd();
         add(userList, BorderLayout.NORTH);
 
+        if (isManager) {
+            managerButtonPanel(buttonPanel, serverAPP, username, drawPanel);
+            add(buttonPanel, BorderLayout.SOUTH);
+        }
+
         displayChat();
-        chatInput(drawPanel);
+        chatInput(drawPanel, username);
         add(chatWindow, BorderLayout.CENTER);
     }
 
@@ -38,21 +44,40 @@ public class PeerAndChatPanel extends JPanel{
         userList.setPreferredSize(new Dimension(200, 100));
     }
 
+    private void managerButtonPanel(JPanel buttonPanel, WhiteBoardRemote serverAPP, String username, DrawPanel drawPanel) {
+        JButton kickButton = new JButton("Kick");
+        kickButton.addActionListener(e -> {
+            String selectedUser = userList.getSelectedValue();
+            if (!selectedUser.equals(username)) {
+                try {
+                    serverAPP.removeUser(selectedUser);
+                } catch (RemoteException error) {
+                    System.out.println("Error kicking user");
+                }
+            } else {
+                drawPanel.addNotification("You cannot kick yourself");
+            }
+        });
+
+        buttonPanel.add(kickButton);
+    }
+
     private void displayChat() {
         displayArea.setEditable(false);
         displayArea.setLineWrap(true);
         displayArea.setWrapStyleWord(true);
         JScrollPane scrollPane = new JScrollPane(displayArea);
+        scrollPane.setBorder(BorderFactory.createTitledBorder("Chat Window"));
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         chatWindow.add(scrollPane, BorderLayout.CENTER);
     }
 
-    private void chatInput(DrawPanel drawPanel) {
+    private void chatInput(DrawPanel drawPanel, String username) {
         inputFiled.addActionListener(e -> {
             String message = inputFiled.getText();
             if (!message.isEmpty()) {
                 try {
-                    serverAPP.addMessage(message);
+                    serverAPP.addMessage(username + ": " + message);
                     inputFiled.setText("");
                 } catch (RemoteException error) {
                     drawPanel.addNotification("Error sending message, manager leaved");

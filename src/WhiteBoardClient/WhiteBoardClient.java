@@ -1,6 +1,7 @@
 package WhiteBoardClient;
 
 import GUIComponents.ManagerApprovalPanel;
+import GUIComponents.MenuPanel;
 import GUIComponents.PeerAndChatPanel;
 import GUIComponents.DrawPanel;
 import Shapes.Shape;
@@ -23,7 +24,7 @@ public class WhiteBoardClient {
     private PeerAndChatPanel peerAndChatPanel;
     private ClientUpdateRemote clientApp;
     private ManagerApprovalPanel approvalPanel;
-    private boolean guiIsAvailable;
+    private MenuPanel menuPanel;
 
 
     public WhiteBoardClient(String serverIPAddress, int serverPort, String username, boolean isManager) {
@@ -71,13 +72,15 @@ public class WhiteBoardClient {
             }
 
             drawPanel = new DrawPanel(serverAPP);
-            peerAndChatPanel = new PeerAndChatPanel(serverAPP, drawPanel);
+
+            peerAndChatPanel = new PeerAndChatPanel(isManager, serverAPP, drawPanel, username);
 
             if (isManager) {
                 approvalPanel = new ManagerApprovalPanel(serverAPP);
-                clientApp = new WhiteBoardClientApp(drawPanel, peerAndChatPanel, approvalPanel);
+                menuPanel = new MenuPanel(drawPanel);
+                clientApp = new WhiteBoardClientApp(drawPanel, peerAndChatPanel, approvalPanel, username);
             } else {
-                clientApp = new WhiteBoardClientApp(drawPanel, peerAndChatPanel, null);
+                clientApp = new WhiteBoardClientApp(drawPanel, peerAndChatPanel, null, username);
             }
 
             serverAPP.addNewClient(clientApp);
@@ -97,7 +100,8 @@ public class WhiteBoardClient {
 
         } catch (Exception e) {
             System.err.println("Client initiate error: " + e.getMessage());
-            return false;
+            System.exit(1);
+            return  false;
         }
     }
 
@@ -142,14 +146,18 @@ public class WhiteBoardClient {
         frame.add(drawPanel, BorderLayout.CENTER);
         frame.add(peerAndChatPanel, BorderLayout.EAST);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 600);
+
+        if (isManager) {
+            frame.setSize(1300, 600);
+        } else{
+            frame.setSize(1000, 600);
+        }
         frame.setVisible(true);
 
         if (isManager) {
+            frame.add(menuPanel, BorderLayout.NORTH);
             frame.add(approvalPanel, BorderLayout.WEST);
         }
-
-        setGUIIsAvailable(true);
 
         frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -158,23 +166,12 @@ public class WhiteBoardClient {
                     serverAPP.removeClient(clientApp);
                     serverAPP.removeUser(username);
                 } catch (Exception error) {
-                    handleException("cannot connect to the server, manager may be leaved", drawPanel);
+                    System.out.print("Error while closing client: " + error.getMessage());
                 }
             }
         });
     }
 
-    private void setGUIIsAvailable(boolean isAvailable) {
-        this.guiIsAvailable = isAvailable;
-    }
-
-    private void handleException(String message, DrawPanel drawPanel) {
-        if (guiIsAvailable) {
-            drawPanel.addNotification(message);
-        } else {
-            System.err.println(message);
-        }
-    }
 
 
     public static void main(String[] args) {

@@ -55,7 +55,30 @@ public class WhiteBoardServerApp extends UnicastRemoteObject implements WhiteBoa
 
     public void removeUser(String username) throws RemoteException {
         if (userList.containsKey(username)) {
-            userList.get(username).setKicked(true);
+            ClientUpdateRemote kickClient = null;
+            for (ClientUpdateRemote client : clients) {
+                try {
+                    if (client.getClientUsername().equals(username)) {
+                        kickClient = client;
+                        break;
+                    }
+                }catch (RemoteException e) {
+                    System.out.println("Error about get client's username: "+ e.getMessage());
+                }
+            }
+
+            if (kickClient!= null) {
+                clients.remove(kickClient);
+                try {
+                    kickClient.clientKickedUpdate("You are removed by manager");
+                } catch (RemoteException e)
+                {
+                    System.out.println("Error about kicking this client: " + e.getMessage());
+                }
+            } else {
+                System.out.println("client not found" + username);
+            }
+
             userList.remove(username);
             updateUserListForAllClients();
         }
