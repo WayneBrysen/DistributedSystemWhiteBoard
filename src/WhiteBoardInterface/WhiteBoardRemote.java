@@ -21,10 +21,14 @@ public interface WhiteBoardRemote extends Remote {
     void updateChatForAllClients() throws RemoteException;
 
     boolean addUser(String username) throws RemoteException;
-    void kickUser(String username) throws RemoteException;
+    void addManager(String username) throws RemoteException;
+    void removeUser(String username) throws RemoteException;
+    void approveUser(String username) throws RemoteException;
+    void denyUser(String username) throws RemoteException;
+    ConcurrentHashMap<String, User> getTempUserList() throws RemoteException;
     ConcurrentHashMap<String, User> getUserList() throws RemoteException;
+    void updateTempUserListForManager() throws RemoteException;
 
     void addNewClient(ClientUpdateRemote client) throws RemoteException;
     void removeClient(ClientUpdateRemote client) throws RemoteException;
-
 }

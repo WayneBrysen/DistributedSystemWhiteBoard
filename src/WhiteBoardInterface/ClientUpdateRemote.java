@@ -1,5 +1,6 @@
 package WhiteBoardInterface;
 
+import GUIComponents.ManagerApprovalPanel;
 import Shapes.Shape;
 import WhiteBoardClient.User;
 
@@ -12,4 +13,6 @@ public interface ClientUpdateRemote extends Remote {
     void clientGetCanvasUpdate(List<Shape> shapes) throws RemoteException;
     void clientGetChatUpdate(List<String> message) throws RemoteException;
     void clientGetUserListUpdate(ConcurrentHashMap<String, User> userList) throws RemoteException;
+    void clientApprovalUpdate(ConcurrentHashMap<String, User> tempUserList) throws RemoteException;
+    void serverShutDownUpdate(String message) throws RemoteException;
 }

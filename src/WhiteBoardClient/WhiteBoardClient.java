@@ -1,5 +1,6 @@
 package WhiteBoardClient;
 
+import GUIComponents.ManagerApprovalPanel;
 import GUIComponents.PeerAndChatPanel;
 import GUIComponents.DrawPanel;
 import Shapes.Shape;
@@ -10,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.List;
@@ -20,50 +22,86 @@ public class WhiteBoardClient {
     private WhiteBoardRemote serverAPP;
     private PeerAndChatPanel peerAndChatPanel;
     private ClientUpdateRemote clientApp;
+    private ManagerApprovalPanel approvalPanel;
+    private boolean guiIsAvailable;
 
 
-    public WhiteBoardClient(String serverIPAddress, int serverPort, String username) {
-        if (!buildConnection(serverIPAddress, serverPort, username)) {
-            usernameRepeatDialog(serverIPAddress, serverPort, username);
+    public WhiteBoardClient(String serverIPAddress, int serverPort, String username, boolean isManager) {
+
+        if (!buildConnection(serverIPAddress, serverPort, username, isManager)) {
+            usernameRepeatDialog(serverIPAddress, serverPort, isManager);
         } else {
-            UISetup(username);
+            UISetup(username, isManager);
         }
     }
 
-    private boolean buildConnection(String serverIPAddress, int serverPort, String username) {
+    private boolean buildConnection(String serverIPAddress, int serverPort, String username, boolean isManager) {
+
         try {
             Registry registry = LocateRegistry.getRegistry(serverIPAddress, serverPort);
             serverAPP = (WhiteBoardRemote) registry.lookup("WhiteBoardServer");
 
-            if (!serverAPP.addUser(username)) {
+            boolean isInList = true;
+
+            if (isManager) {
+                serverAPP.addManager(username);
+            } else {
+                isInList = serverAPP.addUser(username);
+            }
+
+            if (!isInList) {
                 System.out.println("username: " + username + " already exists on server");
                 return false;
             }
 
+            ConcurrentHashMap<String, User> userList = serverAPP.getUserList();
+            ConcurrentHashMap<String, User> tempUserList = serverAPP.getTempUserList();
+
+            if (!isManager) {
+                while (!userList.containsKey(username)) {
+                    tempUserList = serverAPP.getTempUserList();
+                    Thread.sleep(2000);
+                    if(!tempUserList.containsKey(username))
+                    {
+                        System.out.println("You have been denied by the manager.");
+                        System.exit(0);
+                    }
+                    userList = serverAPP.getUserList();
+                }
+            }
+
             drawPanel = new DrawPanel(serverAPP);
-            peerAndChatPanel = new PeerAndChatPanel(serverAPP);
-            clientApp = new WhiteBoardClientApp(drawPanel, peerAndChatPanel);
+            peerAndChatPanel = new PeerAndChatPanel(serverAPP, drawPanel);
+
+            if (isManager) {
+                approvalPanel = new ManagerApprovalPanel(serverAPP);
+                clientApp = new WhiteBoardClientApp(drawPanel, peerAndChatPanel, approvalPanel);
+            } else {
+                clientApp = new WhiteBoardClientApp(drawPanel, peerAndChatPanel, null);
+            }
 
             serverAPP.addNewClient(clientApp);
 
             List<Shape> canvasShapes = serverAPP.getShapes();
-
             List<String> chatHistory = serverAPP.getMessages();
-
-            ConcurrentHashMap<String, User> userList = serverAPP.getUserList();
 
             drawPanel.setShapes(canvasShapes);
             peerAndChatPanel.setMessages(chatHistory);
             peerAndChatPanel.setUserList(userList);
+
+            if (isManager) {
+                approvalPanel.updateTempUserList(tempUserList);
+            }
+
             return true;
+
         } catch (Exception e) {
-            e.printStackTrace();
             System.err.println("Client initiate error: " + e.getMessage());
             return false;
         }
     }
 
-    private void usernameRepeatDialog(String serverIPAddress, int serverPort,String username) {
+    private void usernameRepeatDialog(String serverIPAddress, int serverPort, boolean isManager) {
         JFrame frame = new JFrame("Enter a new username");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(310, 120);
@@ -77,9 +115,9 @@ public class WhiteBoardClient {
         JButton submitButton = new JButton("Submit");
         submitButton.addActionListener(e -> {
             try {
-                if (buildConnection(serverIPAddress, serverPort, textField.getText())) {
+                if (buildConnection(serverIPAddress, serverPort, textField.getText(), isManager)) {
                     frame.dispose();
-                    UISetup(textField.getText());
+                    UISetup(textField.getText(), isManager);
                 } else {
                     prompt.setText("Username already exists, Enter a new username: ");
                     prompt.setForeground(Color.RED);
@@ -99,26 +137,45 @@ public class WhiteBoardClient {
         frame.setVisible(true);
     }
 
-    private void UISetup(String username) {
-        JFrame frame = new JFrame("WhiteBoard Client");
+    private void UISetup(String username, boolean isManager) {
+        JFrame frame = new JFrame("WhiteBoard Client - "+ username + (isManager? " (Manager)" : ""));
         frame.add(drawPanel, BorderLayout.CENTER);
         frame.add(peerAndChatPanel, BorderLayout.EAST);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 600);
         frame.setVisible(true);
 
+        if (isManager) {
+            frame.add(approvalPanel, BorderLayout.WEST);
+        }
+
+        setGUIIsAvailable(true);
+
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 try {
                     serverAPP.removeClient(clientApp);
-                    serverAPP.kickUser(username);
+                    serverAPP.removeUser(username);
                 } catch (Exception error) {
-                    error.printStackTrace();
+                    handleException("cannot connect to the server, manager may be leaved", drawPanel);
                 }
             }
         });
     }
+
+    private void setGUIIsAvailable(boolean isAvailable) {
+        this.guiIsAvailable = isAvailable;
+    }
+
+    private void handleException(String message, DrawPanel drawPanel) {
+        if (guiIsAvailable) {
+            drawPanel.addNotification(message);
+        } else {
+            System.err.println(message);
+        }
+    }
+
 
     public static void main(String[] args) {
         if (args.length < 3) {
@@ -130,6 +187,6 @@ public class WhiteBoardClient {
         int serverPort = Integer.parseInt(args[1]);
         String username = args[2];
 
-        new WhiteBoardClient(serverIPAddress, serverPort, username);
+        new WhiteBoardClient(serverIPAddress, serverPort, username, false);
     }
 }

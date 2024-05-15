@@ -21,14 +21,14 @@ public class PeerAndChatPanel extends JPanel{
     private WhiteBoardRemote serverAPP;
     private List<String> messages = new ArrayList<>();
 
-    public PeerAndChatPanel(WhiteBoardRemote serverApp) {
+    public PeerAndChatPanel(WhiteBoardRemote serverApp, DrawPanel drawPanel) {
         this.serverAPP = serverApp;
         setLayout(new BorderLayout());
         userListAdd();
         add(userList, BorderLayout.NORTH);
 
         displayChat();
-        chatInput();
+        chatInput(drawPanel);
         add(chatWindow, BorderLayout.CENTER);
     }
 
@@ -47,7 +47,7 @@ public class PeerAndChatPanel extends JPanel{
         chatWindow.add(scrollPane, BorderLayout.CENTER);
     }
 
-    private void chatInput() {
+    private void chatInput(DrawPanel drawPanel) {
         inputFiled.addActionListener(e -> {
             String message = inputFiled.getText();
             if (!message.isEmpty()) {
@@ -55,7 +55,7 @@ public class PeerAndChatPanel extends JPanel{
                     serverAPP.addMessage(message);
                     inputFiled.setText("");
                 } catch (RemoteException error) {
-                    error.printStackTrace();
+                    drawPanel.addNotification("Error sending message, manager leaved");
                 }
             }
         });
@@ -80,5 +80,4 @@ public class PeerAndChatPanel extends JPanel{
             userListModel.addElement(username);
         }
     }
-
 }

@@ -22,7 +22,12 @@ public class WhiteBoardServer {
             registry.rebind("WhiteBoardServer", serverApp);
             System.out.println("Server is ready at: "+ serverIPAddress + ":" + serverPort);
 
-            WhiteBoardClient client = new WhiteBoardClient(serverIPAddress, serverPort, username);
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                System.out.println("Server is shutting down");
+                serverApp.serverShutdownNotification();
+            }));
+
+            WhiteBoardClient client = new WhiteBoardClient(serverIPAddress, serverPort, username, true);
             System.out.println("Greetings! Manager!");
 
         } catch (Exception e) {

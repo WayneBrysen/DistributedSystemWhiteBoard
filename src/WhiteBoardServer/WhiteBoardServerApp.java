@@ -8,7 +8,6 @@ import WhiteBoardInterface.WhiteBoardRemote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -17,22 +16,44 @@ public class WhiteBoardServerApp extends UnicastRemoteObject implements WhiteBoa
     private List<Shape> shapes = new ArrayList<>();
     private List<String> messages = new ArrayList<>();
     private ConcurrentHashMap<String, User> userList = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, User> tempUserList = new ConcurrentHashMap<>();
 
     public WhiteBoardServerApp() throws RemoteException {
         super();
     }
 
+    public void addManager(String username) throws RemoteException {
+        userList.put(username, new User(username));
+        updateUserListForAllClients();
+    }
+
     public boolean addUser(String username) throws RemoteException {
-        if (userList.containsKey(username)) {
+        if (userList.containsKey(username) || tempUserList.containsKey(username)) {
             return false;
         } else {
-            userList.put(username, new User(username));
-            updateUserListForAllClients();
+            tempUserList.put(username, new User(username));
+            updateTempUserListForManager();
             return  true;
         }
     }
 
-    public void kickUser(String username) throws RemoteException {
+    public void approveUser(String username) throws RemoteException {
+        if (tempUserList.containsKey(username)) {
+            userList.put(username, tempUserList.get(username));
+            tempUserList.remove(username);
+            updateTempUserListForManager();
+            updateUserListForAllClients();
+        }
+    }
+
+    public void denyUser(String username) throws RemoteException {
+        if (tempUserList.containsKey(username)) {
+            tempUserList.remove(username);
+            updateTempUserListForManager();
+        }
+    }
+
+    public void removeUser(String username) throws RemoteException {
         if (userList.containsKey(username)) {
             userList.get(username).setKicked(true);
             userList.remove(username);
@@ -40,8 +61,17 @@ public class WhiteBoardServerApp extends UnicastRemoteObject implements WhiteBoa
         }
     }
 
+    public void updateTempUserListForManager() throws RemoteException {
+        System.out.println("Manager approval requested.");
+        clients.get(0).clientApprovalUpdate(new ConcurrentHashMap<>(tempUserList));
+    }
+
     public ConcurrentHashMap<String, User> getUserList() throws RemoteException {
         return new ConcurrentHashMap<>(userList);
+    }
+
+    public ConcurrentHashMap<String, User> getTempUserList() throws RemoteException {
+        return new ConcurrentHashMap<>(tempUserList);
     }
 
     public void updateUserListForAllClients() throws RemoteException {
@@ -62,7 +92,6 @@ public class WhiteBoardServerApp extends UnicastRemoteObject implements WhiteBoa
     public void updateCanvasForAllClients() throws RemoteException {
         for (ClientUpdateRemote client : clients) {
             client.clientGetCanvasUpdate(new ArrayList<>(shapes));
-            client.clientGetChatUpdate(new ArrayList<>(messages));
         }
     }
 
@@ -89,5 +118,16 @@ public class WhiteBoardServerApp extends UnicastRemoteObject implements WhiteBoa
 
     public void removeClient(ClientUpdateRemote client) throws RemoteException {
         clients.remove(client);
+
+    }
+
+    public void serverShutdownNotification() {
+        for (ClientUpdateRemote client : clients) {
+            try{
+                client.serverShutDownUpdate("Manager leaved, this application is down now");
+            } catch (RemoteException e) {
+                System.out.println("Error to notify clients: "+ e.getMessage());
+            }
+        }
     }
 }

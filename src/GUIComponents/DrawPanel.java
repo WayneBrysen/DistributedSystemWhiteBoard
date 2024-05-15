@@ -35,6 +35,8 @@ public class DrawPanel extends JPanel {
 
     private int strokeSizeSelection = 1;
 
+    private JTextArea notificationArea = new JTextArea();
+
     public DrawPanel(WhiteBoardRemote serverApp)
     {
         this.serverApp = serverApp;
@@ -46,6 +48,7 @@ public class DrawPanel extends JPanel {
         EastPanel.setLayout(new BoxLayout(EastPanel, BoxLayout.Y_AXIS));
 
         buttonPanel(WestPanel);
+        notificationPanel(WestPanel);
         JPanel colorPanel = createColorPanel();
         JPanel customColorPanel = customColorPicker();
         JPanel strokeSizePanel = strokeSizePanel();
@@ -345,23 +348,29 @@ public class DrawPanel extends JPanel {
         westPanel.add(buttonPanel);
     }
 
-    private void notificationPanel(JPanel westPanel, boolean isManager) {
+    private void notificationPanel(JPanel westPanel) {
         JPanel notificationPanel = new JPanel();
         notificationPanel.setLayout(new BoxLayout(notificationPanel, BoxLayout.Y_AXIS));
         notificationPanel.setBorder(BorderFactory.createTitledBorder("Notification"));
 
-        if (isManager) {
+        notificationArea = new JTextArea(10, 20);
+        notificationArea.setEditable(false);
+        notificationArea.setLineWrap(true);
+        notificationArea.setWrapStyleWord(true);
+        JScrollPane notificationScrollPane = new JScrollPane(notificationArea);
 
-        } else {
+        westPanel.add(notificationScrollPane, BorderLayout.SOUTH);
+    }
 
-        }
+    public void addNotification(String message) {
+        notificationArea.append(message + "\n");
     }
 
     private void addShapeToServer (Shape shape) {
         try {
             serverApp.addShape(shape);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            addNotification("Error: Could not add shape to server, manager leaved.");
         }
     }
 
