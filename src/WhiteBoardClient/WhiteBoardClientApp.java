@@ -4,8 +4,10 @@ import GUIComponents.ManagerApprovalPanel;
 import GUIComponents.PeerAndChatPanel;
 import GUIComponents.DrawPanel;
 import Shapes.Shape;
+import WhiteBoardInterface.WhiteBoardRemote;
 
 import javax.swing.*;
+import java.io.File;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
@@ -16,13 +18,16 @@ public class WhiteBoardClientApp extends UnicastRemoteObject implements WhiteBoa
     private PeerAndChatPanel peerAndChatPanel;
     private ManagerApprovalPanel managerApprovalPanel;
     private String username;
+    private WhiteBoardRemote serverApp;
+    private File currentCanvas;
 
-    public WhiteBoardClientApp(DrawPanel drawPanel, PeerAndChatPanel peerAndChatPanel, ManagerApprovalPanel managerApprovalPanel, String username) throws RemoteException {
+    public WhiteBoardClientApp(DrawPanel drawPanel, PeerAndChatPanel peerAndChatPanel, ManagerApprovalPanel managerApprovalPanel, String username, WhiteBoardRemote serverApp) throws RemoteException {
         super();
         this.drawPanel = drawPanel;
         this.peerAndChatPanel = peerAndChatPanel;
         this.managerApprovalPanel = managerApprovalPanel;
         this.username = username;
+        this.serverApp = serverApp;
     }
 
     public void clientGetUserListUpdate(ConcurrentHashMap<String, User> userList) throws RemoteException {
@@ -55,7 +60,7 @@ public class WhiteBoardClientApp extends UnicastRemoteObject implements WhiteBoa
     }
 
     public void clientKickedUpdate(String message) throws RemoteException {
-        JOptionPane.showMessageDialog(null, message);
+        JOptionPane.showMessageDialog(null,message);
         System.exit(0);
     }
 }

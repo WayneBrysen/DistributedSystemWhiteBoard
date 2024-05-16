@@ -67,7 +67,7 @@ public class WhiteBoardServerApp extends UnicastRemoteObject implements WhiteBoa
                 }
             }
 
-            if (kickClient!= null) {
+            if (kickClient!= null && kickClient != clients.get(0)) {
                 clients.remove(kickClient);
                 try {
                     kickClient.clientKickedUpdate("You are removed by manager");
@@ -75,14 +75,14 @@ public class WhiteBoardServerApp extends UnicastRemoteObject implements WhiteBoa
                 {
                     System.out.println("Error about kicking this client: " + e.getMessage());
                 }
-            } else {
-                System.out.println("client not found" + username);
             }
 
             userList.remove(username);
             updateUserListForAllClients();
         }
     }
+
+
 
     public void updateTempUserListForManager() throws RemoteException {
         System.out.println("Manager approval requested.");
@@ -105,6 +105,11 @@ public class WhiteBoardServerApp extends UnicastRemoteObject implements WhiteBoa
 
     public void addShape(Shape shape) throws RemoteException {
         shapes.add(shape);
+        updateCanvasForAllClients();
+    }
+
+    public void setShapes(List<Shape> shapes) throws RemoteException {
+        this.shapes = new ArrayList<>(shapes);
         updateCanvasForAllClients();
     }
 

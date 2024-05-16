@@ -1,8 +1,6 @@
 package GUIComponents;
 
-import Shapes.Circle;
-import Shapes.Line;
-import Shapes.Oval;
+import Shapes.*;
 import Shapes.Rectangle;
 import Shapes.Shape;
 import WhiteBoardInterface.WhiteBoardRemote;
@@ -74,6 +72,12 @@ public class DrawPanel extends JPanel {
                 {
                     startPoint = e.getPoint();
                     lastStoredPoint = startPoint;
+                    if ("Text".equals(currentSelection)) {
+                        String textInput = JOptionPane.showInputDialog("Enter Text:");
+                        if(!textInput.isEmpty() && textInput!= null) {
+                            drawText(startPoint, textInput, colorSelection, strokeSizeSelection);
+                        }
+                    }
                 }
 
             }
@@ -179,6 +183,14 @@ public class DrawPanel extends JPanel {
         addShapeToServer(rectangle);
         this.startPoint = null;
         this.currentPoint = null;
+        repaint();
+    }
+
+    private void drawText(Point startPoint, String text, Color color, int fontSize) {
+        Text textInput = new Text(startPoint.x, startPoint.y, text, color, fontSize);
+        shapes.add(textInput);
+        addShapeToServer(textInput);
+        this.startPoint = null;
         repaint();
     }
 
@@ -335,12 +347,18 @@ public class DrawPanel extends JPanel {
             currentSelection = "Eraser";
         });
 
+        JButton TextButton = new JButton("Text");
+        TextButton.addActionListener(e -> {
+            currentSelection = "Text";
+        });
+
         buttonPanel.add(lineButton);
         buttonPanel.add(circleButton);
         buttonPanel.add(ovalButton);
         buttonPanel.add(RectangleButton);
         buttonPanel.add(FreeDrawButton);
         buttonPanel.add(EraserButton);
+        buttonPanel.add(TextButton);
 
 
         westPanel.add(buttonPanel);
@@ -349,13 +367,13 @@ public class DrawPanel extends JPanel {
     private void notificationPanel(JPanel westPanel) {
         JPanel notificationPanel = new JPanel();
         notificationPanel.setLayout(new BoxLayout(notificationPanel, BoxLayout.Y_AXIS));
-        notificationPanel.setBorder(BorderFactory.createTitledBorder("Notification"));
 
         notificationArea = new JTextArea(10, 20);
         notificationArea.setEditable(false);
         notificationArea.setLineWrap(true);
         notificationArea.setWrapStyleWord(true);
         JScrollPane notificationScrollPane = new JScrollPane(notificationArea);
+        notificationScrollPane.setBorder(BorderFactory.createTitledBorder("Notification"));
 
         westPanel.add(notificationScrollPane, BorderLayout.SOUTH);
     }

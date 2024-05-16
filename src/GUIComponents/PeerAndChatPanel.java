@@ -48,15 +48,21 @@ public class PeerAndChatPanel extends JPanel{
         JButton kickButton = new JButton("Kick");
         kickButton.addActionListener(e -> {
             String selectedUser = userList.getSelectedValue();
-            if (!selectedUser.equals(username)) {
-                try {
-                    serverAPP.removeUser(selectedUser);
-                } catch (RemoteException error) {
-                    System.out.println("Error kicking user");
+            if (selectedUser!= null) {
+                if (!selectedUser.equals(username)) {
+                    try {
+                        serverAPP.removeUser(selectedUser);
+                        drawPanel.addNotification(selectedUser + " has been kicked");
+                    } catch (RemoteException error) {
+                        System.out.println("Error kicking user");
+                    }
+                } else {
+                    drawPanel.addNotification("You cannot kick yourself");
                 }
             } else {
-                drawPanel.addNotification("You cannot kick yourself");
+                drawPanel.addNotification("Please select a user to kick");
             }
+
         });
 
         buttonPanel.add(kickButton);
@@ -82,6 +88,8 @@ public class PeerAndChatPanel extends JPanel{
                 } catch (RemoteException error) {
                     drawPanel.addNotification("Error sending message, manager leaved");
                 }
+            } else {
+                drawPanel.addNotification("Message cannot be empty");
             }
         });
         chatWindow.add(inputFiled, BorderLayout.SOUTH);

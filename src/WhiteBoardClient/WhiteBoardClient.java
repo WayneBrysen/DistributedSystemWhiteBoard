@@ -77,10 +77,10 @@ public class WhiteBoardClient {
 
             if (isManager) {
                 approvalPanel = new ManagerApprovalPanel(serverAPP);
-                menuPanel = new MenuPanel(drawPanel);
-                clientApp = new WhiteBoardClientApp(drawPanel, peerAndChatPanel, approvalPanel, username);
+                menuPanel = new MenuPanel(drawPanel, serverAPP, username);
+                clientApp = new WhiteBoardClientApp(drawPanel, peerAndChatPanel, approvalPanel, username, serverAPP);
             } else {
-                clientApp = new WhiteBoardClientApp(drawPanel, peerAndChatPanel, null, username);
+                clientApp = new WhiteBoardClientApp(drawPanel, peerAndChatPanel, null, username, serverAPP);
             }
 
             serverAPP.addNewClient(clientApp);
@@ -148,7 +148,7 @@ public class WhiteBoardClient {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         if (isManager) {
-            frame.setSize(1300, 600);
+            frame.setSize(1200, 600);
         } else{
             frame.setSize(1000, 600);
         }

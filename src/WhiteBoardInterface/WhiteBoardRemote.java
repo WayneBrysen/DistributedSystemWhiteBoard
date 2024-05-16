@@ -12,6 +12,7 @@ public interface WhiteBoardRemote extends Remote {
 
     void addShape(Shape shape) throws RemoteException;
     List<Shape> getShapes() throws RemoteException;
+    void setShapes(List<Shape> shapes) throws RemoteException;
 
     void addMessage(String message) throws RemoteException;
     List<String> getMessages() throws RemoteException;
